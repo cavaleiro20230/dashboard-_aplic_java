@@ -5,6 +5,8 @@ Creating Database Reports and Dashboard in Next.js
 Thought for 4 seconds### Creating Database Reports and Dashboard in Next.js
 
 dashboard that pulls data directly from a database and displays it in your application. Let's build a solution using Next.js that you can integrate with your Java backend.
+
+
 ![image](https://github.com/user-attachments/assets/4a113750-f0a6-4391-9b4b-fc731489315e)
 
 
