@@ -1,0 +1,28 @@
+// app/actions.ts
+'use server'
+
+import { query } from '@/lib/db'
+
+export async function fetchSalesReport(startDate: string, endDate: string) {
+  const { rows } = await query(
+    'SELECT date, SUM(amount) as total FROM sales WHERE date BETWEEN $1 AND $2 GROUP BY date ORDER BY date',
+    [startDate, endDate]
+  )
+  
+  return rows
+}
+
+export async function fetchProductReport(category?: string) {
+  const params = []
+  let sql = 'SELECT product_name, SUM(quantity) as total_sold, SUM(amount) as total_revenue FROM sales'
+  
+  if (category) {
+    sql += ' WHERE category = $1'
+    params.push(category)
+  }
+  
+  sql += ' GROUP BY product_name ORDER BY total_revenue DESC'
+  
+  const { rows } = await query(sql, params)
+  return rows
+}
